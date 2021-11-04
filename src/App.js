@@ -68,8 +68,8 @@ function App() {
           })
           .then((response) => {
             let data = response.data;
-
-            setRepo(data.items);
+            setRepo(data);
+            // setRepo(data.items);
           })
           .catch((error) => {
             handleError(error);
