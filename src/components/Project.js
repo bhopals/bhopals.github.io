@@ -113,7 +113,9 @@ const Project = (props) => {
               <span>
                 <h5 className="card-title text-lg">
                   <b>Demo -</b>&nbsp;&nbsp;
-                  <a href={item.homepage}>{item.homepage}</a>
+                  <a target="_blank" href={item.homepage}>
+                    {item.homepage}
+                  </a>
                 </h5>
                 <br />
                 <h5 className="card-title text-lg">
