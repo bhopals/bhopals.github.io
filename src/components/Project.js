@@ -112,7 +112,16 @@ const Project = (props) => {
             <div className="flex items-center opacity-60">
               <span>
                 <h5 className="card-title text-lg">{item.homepage}</h5>
-                <h5 className="card-title text-lg">{item.topics}</h5>
+                <h5 className="card-title text-lg">
+                  {item.topics.map((skill, index) => (
+                    <div
+                      key={index}
+                      className="m-1 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 badge-primary bg-opacity-75 rounded-full"
+                    >
+                      {skill}
+                    </div>
+                  ))}
+                </h5>
               </span>
             </div>
           </div>
