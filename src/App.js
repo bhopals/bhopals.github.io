@@ -29,6 +29,14 @@ function App() {
     }
   }, [theme]);
 
+  const fetchRepoDetails = async (repo) => {
+    const { data } = await axios.get(
+      `https://api.github.com/repos/${config.github.username}/${repo}`
+    );
+    console.log("data>", data);
+    return data;
+  };
+
   const loadData = useCallback(() => {
     axios
       .get(`https://api.github.com/users/${config.github.username}`)
@@ -46,30 +54,25 @@ function App() {
         setProfile(profileData);
       })
       .then(() => {
-        let excludeRepo = ``;
-
-        config.github.exclude.projects.forEach((project) => {
-          excludeRepo += `+-repo:${config.github.username}/${project}`;
-        });
-
-        let query = `user:${config.github.username}+fork:${!config.github
-          .exclude.forks}${excludeRepo}`;
-
-        let url = `https://api.github.com/search/repositories?q=${query}&sort=${config.github.sortBy}&per_page=${config.github.limit}&type=Repositories`;
-
         //To Fetch Pinned REPO
         let gitUrl = `https://gh-pinned-repos-5l2i19um3.vercel.app/?username=${config.github.username}`;
-
         axios
           .get(gitUrl, {
             headers: {
               "Content-Type": "application/vnd.github.v3+json",
             },
           })
-          .then((response) => {
-            let data = response.data;
-            setRepo(data);
-            // setRepo(data.items);
+          .then(async (response) => {
+            const repoNames = response.data
+              .map((item) => item.repo)
+              .concat(config.github.include);
+            console.log("repoNames>", repoNames);
+            const repos = [];
+            for (let i = 0; i < repoNames.length; i++) {
+              repos.push(await fetchRepoDetails(repoNames[i]));
+            }
+            console.log("repos>", repos);
+            setRepo(repos);
           })
           .catch((error) => {
             handleError(error);

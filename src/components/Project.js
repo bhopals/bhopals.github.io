@@ -4,9 +4,17 @@ import { AiOutlineStar, AiOutlineFork } from "react-icons/ai";
 import config from "../config";
 import PropTypes from "prop-types";
 import { LoadingContext } from "../contexts/LoadingContext";
+import axios from "axios";
 
 const Project = (props) => {
   const [loading] = useContext(LoadingContext);
+
+  const fetchRepoDetails = async (owner, repo) => {
+    const repoDetails = await axios.get(
+      `https://api.github.com/repos/${owner}/${repo}`
+    );
+    return repoDetails.data;
+  };
 
   const renderSkeleton = () => {
     let array = [];
@@ -93,18 +101,26 @@ const Project = (props) => {
                 ></path>
               </svg>
               <span>
-                <h5 className="card-title text-lg">{item.repo}</h5>
+                <h5 className="card-title text-lg">{item.name}</h5>
               </span>
             </div>
             <p className="mb-5 mt-1 text-base-content text-opacity-60 text-sm">
               {item.description}
             </p>
           </div>
+          <div>
+            <div className="flex items-center opacity-60">
+              <span>
+                <h5 className="card-title text-lg">{item.homepage}</h5>
+                <h5 className="card-title text-lg">{item.topics}</h5>
+              </span>
+            </div>
+          </div>
           <div className="flex justify-between text-sm text-base-content text-opacity-60">
             <div className="flex flex-grow">
               <span className="mr-3 flex items-center">
                 <AiOutlineStar className="mr-0.5" />
-                <span>{item.stars}</span>
+                <span>{item.stargazers_count}</span>
               </span>
               <span className="flex items-center">
                 <AiOutlineFork className="mr-0.5" />
