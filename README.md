@@ -1,3 +1,3 @@
 ### Portfolio
 
-A Portfoli page to list the projects and profiles.
+A Portfolio page to list the projects and profiles.
