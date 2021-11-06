@@ -8,7 +8,7 @@ module.exports = {
       forks: false, // Forked projects will not be displayed if set to true.
       projects: [], // These projects will not be displayed. example: ['my-project1', 'my-project2']
     },
-    include: ["social-app", "budgetry-app"], // The Repos you want to add/include along with Pinned Repos
+    include: ["social-app", "budgetry-app", "uber-app", "analog-clock"], // The Repos you want to add/include along with Pinned Repos
   },
   social: {
     linkedin: "bhopal-singh",

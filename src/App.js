@@ -63,13 +63,13 @@ function App() {
             },
           })
           .then(async (response) => {
+            const repos = [];
             const repoNames = response.data
               .map((item) => item.repo)
               .concat(config.github.include);
-            console.log("repoNames>", repoNames);
-            const repos = [];
-            for (let i = 0; i < repoNames.length; i++) {
-              repos.push(await fetchRepoDetails(repoNames[i]));
+            const uniqueRepos = Array.from(new Set(repoNames));
+            for (let i = 0; i < uniqueRepos.length; i++) {
+              repos.push(await fetchRepoDetails(uniqueRepos[i]));
             }
             console.log("repos>", repos);
             setRepo(repos);
