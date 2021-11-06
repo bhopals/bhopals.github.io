@@ -33,7 +33,6 @@ function App() {
     const { data } = await axios.get(
       `https://api.github.com/repos/${config.github.username}/${repo}`
     );
-    console.log("data>", data);
     return data;
   };
 
@@ -71,7 +70,6 @@ function App() {
             for (let i = 0; i < uniqueRepos.length; i++) {
               repos.push(await fetchRepoDetails(uniqueRepos[i]));
             }
-            console.log("repos>", repos);
             setRepo(repos);
           })
           .catch((error) => {
