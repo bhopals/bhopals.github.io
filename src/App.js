@@ -14,7 +14,10 @@ import Blog from "./components/Blog";
 import MetaTags from "./components/MetaTags";
 import { LoadingContext } from "./contexts/LoadingContext";
 import { ThemeContext } from "./contexts/ThemeContext";
-
+/**
+ *
+ * Credit - https://github.com/arifszn/ezprofile
+ */
 function App() {
   const [theme] = useContext(ThemeContext);
   const [, setLoading] = useContext(LoadingContext);
@@ -183,7 +186,7 @@ function App() {
               </div>
             </div>
             {/* DO NOT REMOVE/MODIFY THE FOOTER */}
-            <footer className="p-4 footer bg-base-200 text-base-content footer-center">
+            {/* <footer className="p-4 footer bg-base-200 text-base-content footer-center">
               <div>
                 <p className="font-mono text-sm">
                   Made with{" "}
@@ -198,7 +201,7 @@ function App() {
                   and ❤️
                 </p>
               </div>
-            </footer>
+            </footer> */}
           </Fragment>
         )}
       </div>
