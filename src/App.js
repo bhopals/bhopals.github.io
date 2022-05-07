@@ -22,7 +22,13 @@ function App() {
   const [repo, setRepo] = useState(null);
   const [error, setError] = useState(null);
   const [rateLimit, setRateLimit] = useState(null);
-
+  const headerConfig = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Credentials": "true",
+    "Access-Control-Allow-Methods": "GET,HEAD,OPTIONS,POST,PUT",
+    "Access-Control-Allow-Headers":
+      "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers",
+  };
   useEffect(() => {
     if (theme) {
       document.documentElement.setAttribute("data-theme", theme);
@@ -30,15 +36,21 @@ function App() {
   }, [theme]);
 
   const fetchRepoDetails = async (repo) => {
-    const { data } = await axios.get(
-      `https://api.github.com/repos/${config.github.username}/${repo}`
-    );
+    const { data } = await axios
+      .get(
+        `https://api.github.com/repos/${config.github.username}/${repo}`,
+        headerConfig
+      )
+      .catch((error) => console.log(error));
     return data;
   };
 
   const loadData = useCallback(() => {
     axios
-      .get(`https://api.github.com/users/${config.github.username}`)
+      .get(
+        `https://api.github.com/users/${config.github.username}`,
+        headerConfig
+      )
       .then((response) => {
         let data = response.data;
 
@@ -53,14 +65,15 @@ function App() {
         setProfile(profileData);
       })
       .then(() => {
-        //To Fetch Pinned REPO
-        let gitUrl = `https://gh-pinned-repos-5l2i19um3.vercel.app/?username=${config.github.username}`;
+        /**
+         * To Fetch Pinned REPO
+         *
+         * Refer - https://github.com/egoist/gh-pinned-repos
+         * Refer - https://dev.to/nsadisha/get-pinned-github-repositories-as-json-1hff
+         */
+        let gitUrl = `https://gh-pinned-repos.egoist.sh/?username=${config.github.username}`;
         axios
-          .get(gitUrl, {
-            headers: {
-              "Content-Type": "application/vnd.github.v3+json",
-            },
-          })
+          .get(gitUrl, headerConfig)
           .then(async (response) => {
             const repos = [];
             const repoNames = response.data
