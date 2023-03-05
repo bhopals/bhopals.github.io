@@ -70,11 +70,10 @@ function App() {
       .then(() => {
         /**
          * To Fetch Pinned REPO
-         *
          * Refer - https://github.com/egoist/gh-pinned-repos
          * Refer - https://dev.to/nsadisha/get-pinned-github-repositories-as-json-1hff
          */
-        let gitUrl = `https://gh-pinned-repos.egoist.sh/?username=${config.github.username}`;
+        let gitUrl = `https://gh-pinned-repos.egoist.dev/?username=${config.github.username}`;
         axios
           .get(gitUrl, headerConfig)
           .then(async (response) => {
