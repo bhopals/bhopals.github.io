@@ -80,8 +80,7 @@ const Project = (props) => {
           } catch (error) {
             console.error(error);
           }
-
-          window.open(item.link, "_blank");
+          window.open(item.clone_url, "_blank");
         }}
       >
         <div className="flex justify-between flex-col p-8 h-full w-full">
