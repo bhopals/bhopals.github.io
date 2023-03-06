@@ -115,7 +115,7 @@ const Blog = () => {
             try {
               if (config.googleAnalytics.id) {
                 ga.event({
-                  action: "Click Blog Post",
+                  action: "Click Blog Post>>",
                   params: {
                     post: article.title,
                   },
