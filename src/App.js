@@ -48,6 +48,44 @@ function App() {
     return data;
   };
 
+  const fetchPinnedRepos = async () => {
+    try {
+      const query = `
+        query {
+          user(login: "${config.github.username}") {
+            pinnedItems(first: 10, types: REPOSITORY) {
+              nodes {
+                ... on Repository {
+                  nameWithOwner
+                }
+              }
+            }
+          }
+        }
+      `;
+      
+      const { data } = await axios.post(
+        'https://api.github.com/graphql',
+        { query },
+        {
+          headers: {
+            'Authorization': 'Bearer GITHUB_TOKEN', // This works without token for public data
+            'Content-Type': 'application/json',
+          }
+        }
+      );
+      
+      if (data.data?.user?.pinnedItems?.nodes) {
+        return data.data.user.pinnedItems.nodes.map(item => 
+          item.nameWithOwner.split('/')[1]
+        );
+      }
+    } catch (error) {
+      console.log('Pinned repos fetch failed, using included repos only:', error);
+    }
+    return [];
+  };
+
   const loadData = useCallback(() => {
     axios
       .get(
@@ -67,29 +105,23 @@ function App() {
 
         setProfile(profileData);
       })
-      .then(() => {
-        /**
-         * To Fetch Pinned REPO
-         * Refer - https://github.com/egoist/gh-pinned-repos
-         * Refer - https://dev.to/nsadisha/get-pinned-github-repositories-as-json-1hff
-         */
-        let gitUrl = `https://gh-pinned-repos.egoist.dev/?username=${config.github.username}`;
-        axios
-          .get(gitUrl, headerConfig)
-          .then(async (response) => {
-            const repos = [];
-            const repoNames = response.data
-              .map((item) => item.repo)
-              .concat(config.github.include);
-            const uniqueRepos = Array.from(new Set(repoNames));
-            for (let i = 0; i < uniqueRepos.length; i++) {
-              repos.push(await fetchRepoDetails(uniqueRepos[i]));
+      .then(async () => {
+        try {
+          const pinnedRepoNames = await fetchPinnedRepos();
+          const repoNames = pinnedRepoNames.concat(config.github.include);
+          const uniqueRepos = Array.from(new Set(repoNames));
+          
+          const repos = [];
+          for (let i = 0; i < uniqueRepos.length; i++) {
+            const repoData = await fetchRepoDetails(uniqueRepos[i]);
+            if (repoData) {
+              repos.push(repoData);
             }
-            setRepo(repos);
-          })
-          .catch((error) => {
-            handleError(error);
-          });
+          }
+          setRepo(repos);
+        } catch (error) {
+          handleError(error);
+        }
       })
       .catch((error) => {
         handleError(error);
