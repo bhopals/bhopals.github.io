@@ -30,6 +30,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "fetch-data": "node scripts/fetch-github-data.js",
     "start": "NODE_OPTIONS=--openssl-legacy-provider craco start",
     "build": "NODE_OPTIONS=--openssl-legacy-provider craco build",
     "test": "NODE_OPTIONS=--openssl-legacy-provider craco test",

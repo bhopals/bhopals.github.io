@@ -3,12 +3,25 @@ module.exports = {
   github: {
     username: "bhopals", // Your GitHub org/user name. (Required)
     sortBy: "stars", // stars | updated
-    limit: 10, // How many projects to display.
+    limit: 16, // How many projects to display.
     exclude: {
       forks: false, // Forked projects will not be displayed if set to true.
       projects: [], // These projects will not be displayed. example: ['my-project1', 'my-project2']
     },
-    include: ["social-app", "budgetry-app", "uber-app", "analog-clock"], // The Repos you want to add/include along with Pinned Repos
+    // Shown after your pinned repos, in this order. Curated to cover the full
+    // stack: MERN apps, AWS Serverless/CDK, Spring microservices, real-time.
+    include: [
+      "social-app",
+      "uber-app",
+      "AWS-Serverless-Typescript",
+      "aws-sdk-lambda-stack-node",
+      "mssc-brewery",
+      "spring-security-jwt",
+      "webrtc-firebase-demo",
+      "discord-blockchain",
+      "budgetry-app",
+      "analog-clock",
+    ],
   },
   social: {
     linkedin: "bhopal-singh",

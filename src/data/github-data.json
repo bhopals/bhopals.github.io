@@ -1,0 +1,201 @@
+{
+  "generated_at": "2026-08-29T23:04:05.608525+00:00",
+  "profile": {
+    "avatar": "https://avatars.githubusercontent.com/u/17331876?v=4",
+    "name": "Bhopal Singh",
+    "bio": "Full-stack Developer ",
+    "location": "Toronto Canada",
+    "company": "Liberty Mutual"
+  },
+  "repos": [
+    {
+      "name": "react-chat-app",
+      "description": "An Interactive chat application ",
+      "html_url": "https://github.com/bhopals/react-chat-app",
+      "homepage": "https://bhopals.github.io/react-chat-app/",
+      "topics": [
+        "chat",
+        "mobile-responsive",
+        "react",
+        "redux"
+      ],
+      "stargazers_count": 3,
+      "forks": 0,
+      "language": "JavaScript"
+    },
+    {
+      "name": "linkedin",
+      "description": "LinkedIn Replica with limited Features",
+      "html_url": "https://github.com/bhopals/linkedin",
+      "homepage": "https://trusting-kalam-16793f.netlify.app/",
+      "topics": [
+        "firebase-auth",
+        "firebase-database",
+        "mobile-responsive",
+        "react",
+        "react-hooks",
+        "react-router-dom",
+        "redux",
+        "redux-thunk"
+      ],
+      "stargazers_count": 3,
+      "forks": 0,
+      "language": "JavaScript"
+    },
+    {
+      "name": "to-do-app",
+      "description": "A TODO Application ",
+      "html_url": "https://github.com/bhopals/to-do-app",
+      "homepage": "https://boring-euler-55440b.netlify.app/",
+      "topics": [
+        "html-css-javascript",
+        "todo"
+      ],
+      "stargazers_count": 3,
+      "forks": 0,
+      "language": "CSS"
+    },
+    {
+      "name": "rock-paper-scissors-game.github.io",
+      "description": " Rock Paper Scissors Game",
+      "html_url": "https://github.com/bhopals/rock-paper-scissors-game.github.io",
+      "homepage": "https://vigilant-wescoff-da6868.netlify.app/",
+      "topics": [
+        "css",
+        "dom-manipulation",
+        "game",
+        "html",
+        "javascript"
+      ],
+      "stargazers_count": 3,
+      "forks": 0,
+      "language": "CSS"
+    },
+    {
+      "name": "javascript-card-game",
+      "description": "Javascript Card Game",
+      "html_url": "https://github.com/bhopals/javascript-card-game",
+      "homepage": "https://javascript-card-game.herokuapp.com/",
+      "topics": [
+        "css-animations",
+        "html-css-javascript",
+        "javascript"
+      ],
+      "stargazers_count": 2,
+      "forks": 0,
+      "language": "JavaScript"
+    },
+    {
+      "name": "test-your-typing-speed-app",
+      "description": "A Demo app to test your Typing speed",
+      "html_url": "https://github.com/bhopals/test-your-typing-speed-app",
+      "homepage": "https://typing-speed-test-app.herokuapp.com/",
+      "topics": [
+        "html-css-javascript"
+      ],
+      "stargazers_count": 2,
+      "forks": 3,
+      "language": "CSS"
+    },
+    {
+      "name": "social-app",
+      "description": "Social Media App using MERN Stack",
+      "html_url": "https://github.com/bhopals/social-app",
+      "homepage": null,
+      "topics": [],
+      "stargazers_count": 1,
+      "forks": 0,
+      "language": "JavaScript"
+    },
+    {
+      "name": "uber-app",
+      "description": "Uber Application",
+      "html_url": "https://github.com/bhopals/uber-app",
+      "homepage": null,
+      "topics": [],
+      "stargazers_count": 1,
+      "forks": 0,
+      "language": "JavaScript"
+    },
+    {
+      "name": "AWS-Serverless-Typescript",
+      "description": "AWS & Typescript - CDK, Serverless, React",
+      "html_url": "https://github.com/bhopals/AWS-Serverless-Typescript",
+      "homepage": null,
+      "topics": [],
+      "stargazers_count": 1,
+      "forks": 0,
+      "language": "TypeScript"
+    },
+    {
+      "name": "aws-sdk-lambda-stack-node",
+      "description": "AWS Lambda Stack Node JS",
+      "html_url": "https://github.com/bhopals/aws-sdk-lambda-stack-node",
+      "homepage": null,
+      "topics": [],
+      "stargazers_count": 2,
+      "forks": 0,
+      "language": "TypeScript"
+    },
+    {
+      "name": "mssc-brewery",
+      "description": "Spring Boot Microservices",
+      "html_url": "https://github.com/bhopals/mssc-brewery",
+      "homepage": null,
+      "topics": [],
+      "stargazers_count": 1,
+      "forks": 0,
+      "language": "Java"
+    },
+    {
+      "name": "spring-security-jwt",
+      "description": "Spring Security with JWT",
+      "html_url": "https://github.com/bhopals/spring-security-jwt",
+      "homepage": null,
+      "topics": [],
+      "stargazers_count": 1,
+      "forks": 0,
+      "language": "Java"
+    },
+    {
+      "name": "webrtc-firebase-demo",
+      "description": "Web RTC Video Chat",
+      "html_url": "https://github.com/bhopals/webrtc-firebase-demo",
+      "homepage": "webrtc-firebase-demo-jade.vercel.app",
+      "topics": [],
+      "stargazers_count": 1,
+      "forks": 0,
+      "language": "JavaScript"
+    },
+    {
+      "name": "discord-blockchain",
+      "description": "Build Discord Web 3.0 ",
+      "html_url": "https://github.com/bhopals/discord-blockchain",
+      "homepage": null,
+      "topics": [],
+      "stargazers_count": 1,
+      "forks": 0,
+      "language": "JavaScript"
+    },
+    {
+      "name": "budgetry-app",
+      "description": "Budget App",
+      "html_url": "https://github.com/bhopals/budgetry-app",
+      "homepage": "https://budgetry.herokuapp.com/",
+      "topics": [],
+      "stargazers_count": 0,
+      "forks": 0,
+      "language": "JavaScript"
+    },
+    {
+      "name": "analog-clock",
+      "description": "Analog Clock using HTML, CSS and JAVAScript",
+      "html_url": "https://github.com/bhopals/analog-clock",
+      "homepage": "https://dreamy-fermi-de8ea1.netlify.com/",
+      "topics": [],
+      "stargazers_count": 1,
+      "forks": 0,
+      "language": "HTML"
+    }
+  ]
+}

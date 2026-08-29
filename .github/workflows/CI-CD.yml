@@ -3,6 +3,10 @@ name: Build and Publish to gh-pages Branch
 on:
   push:
     branches: [ main ]
+  schedule:
+    # Weekly refresh so baked-in GitHub data (stars, descriptions, pinned repos) stays current
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -20,6 +24,11 @@ jobs:
 
     - name: Install dependencies
       run: npm install
+
+    - name: Fetch GitHub data
+      run: node scripts/fetch-github-data.js
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build
       run: npm run build

@@ -4,17 +4,9 @@ import { AiOutlineStar, AiOutlineFork } from "react-icons/ai";
 import config from "../config";
 import PropTypes from "prop-types";
 import { LoadingContext } from "../contexts/LoadingContext";
-import axios from "axios";
 
 const Project = (props) => {
   const [loading] = useContext(LoadingContext);
-
-  const fetchRepoDetails = async (owner, repo) => {
-    const repoDetails = await axios.get(
-      `https://api.github.com/repos/${owner}/${repo}`
-    );
-    return repoDetails.data;
-  };
 
   const renderSkeleton = () => {
     let array = [];
@@ -80,7 +72,7 @@ const Project = (props) => {
           } catch (error) {
             console.error(error);
           }
-          window.open(item.clone_url, "_blank");
+          window.open(item.html_url, "_blank");
         }}
       >
         <div className="flex justify-between flex-col p-8 h-full w-full">
@@ -110,15 +102,21 @@ const Project = (props) => {
           <div>
             <div className="flex items-center opacity-60">
               <span>
+                {item.homepage && (
+                  <h5 className="card-title text-lg">
+                    <b>Demo -</b>&nbsp;&nbsp;
+                    <a
+                      target="_blank"
+                      rel="noreferrer"
+                      href={item.homepage}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {item.homepage}
+                    </a>
+                  </h5>
+                )}
                 <h5 className="card-title text-lg">
-                  <b>Demo -</b>&nbsp;&nbsp;
-                  <a target="_blank" href={item.homepage}>
-                    {item.homepage}
-                  </a>
-                </h5>
-                <br />
-                <h5 className="card-title text-lg">
-                  {item.topics.map((skill, index) => (
+                  {(item.topics || []).map((skill, index) => (
                     <div
                       key={index}
                       className="m-1 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 badge-primary bg-opacity-75 rounded-full"
