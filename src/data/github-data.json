@@ -1,11 +1,17 @@
 {
-  "generated_at": "2026-08-29T23:04:05.608525+00:00",
+  "generated_at": "2026-08-29T23:14:29.310Z",
   "profile": {
     "avatar": "https://avatars.githubusercontent.com/u/17331876?v=4",
     "name": "Bhopal Singh",
     "bio": "Full-stack Developer ",
     "location": "Toronto Canada",
     "company": "Liberty Mutual"
+  },
+  "stats": {
+    "totalStars": 137,
+    "publicRepos": 167,
+    "followers": 7,
+    "since": 2016
   },
   "repos": [
     {

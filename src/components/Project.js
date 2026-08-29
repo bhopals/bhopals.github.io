@@ -1,12 +1,59 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useState } from "react";
 import { ga, languageColor, skeleton } from "../helpers/utils";
 import { AiOutlineStar, AiOutlineFork } from "react-icons/ai";
 import config from "../config";
 import PropTypes from "prop-types";
 import { LoadingContext } from "../contexts/LoadingContext";
 
+const ALL_TAB = "All";
+const FALLBACK_CATEGORY = "Web Apps";
+
+const categoryOf = (repoName) => {
+  const categories = config.projectCategories || {};
+  const match = Object.keys(categories).find((category) =>
+    categories[category].includes(repoName)
+  );
+  return match || FALLBACK_CATEGORY;
+};
+
 const Project = (props) => {
   const [loading] = useContext(LoadingContext);
+  const [activeTab, setActiveTab] = useState(ALL_TAB);
+
+  const repos = props.repo || [];
+  const tabs = [
+    ALL_TAB,
+    ...[...Object.keys(config.projectCategories || {}), FALLBACK_CATEGORY].filter(
+      (category) => repos.some((r) => categoryOf(r.name) === category)
+    ),
+  ];
+  const visibleRepos =
+    activeTab === ALL_TAB
+      ? repos
+      : repos.filter((r) => categoryOf(r.name) === activeTab);
+
+  const renderTabs = () => (
+    <div className="mx-4 mt-2 flex flex-wrap gap-2">
+      {tabs.map((tab) => (
+        <button
+          key={tab}
+          onClick={() => setActiveTab(tab)}
+          className={`text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full cursor-pointer border-0 ${
+            activeTab === tab
+              ? "badge-primary bg-opacity-90"
+              : "bg-base-300 text-base-content text-opacity-60 hover:text-opacity-100"
+          }`}
+        >
+          {tab}
+          <span className="ml-1 opacity-60">
+            {tab === ALL_TAB
+              ? repos.length
+              : repos.filter((r) => categoryOf(r.name) === tab).length}
+          </span>
+        </button>
+      ))}
+    </div>
+  );
 
   const renderSkeleton = () => {
     let array = [];
@@ -55,10 +102,10 @@ const Project = (props) => {
   };
 
   const renderProjects = () => {
-    return props.repo.map((item, index) => (
+    return visibleRepos.map((item, index) => (
       <div
         className="card shadow-lg compact bg-base-100 cursor-pointer"
-        key={index}
+        key={item.name}
         onClick={() => {
           try {
             if (config.googleAnalytics && config.googleAnalytics.id) {
@@ -186,6 +233,7 @@ const Project = (props) => {
                     </div>
                   </li>
                 </ul>
+                {!loading && tabs.length > 2 && renderTabs()}
               </div>
             </div>
           </div>

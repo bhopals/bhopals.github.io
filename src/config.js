@@ -1,5 +1,11 @@
 // config.js
 module.exports = {
+  hero: {
+    // Shown under the name on the avatar card
+    headline: "Senior Full Stack Developer",
+    tagline: "AWS Serverless · Spring Microservices · React",
+    careerStart: 2010, // First professional role (A3logics, January 2010)
+  },
   github: {
     username: "bhopals", // Your GitHub org/user name. (Required)
     sortBy: "stars", // stars | updated
@@ -22,6 +28,12 @@ module.exports = {
       "budgetry-app",
       "analog-clock",
     ],
+  },
+  // Filter tabs on the Projects grid. Repos not listed here fall under "Web Apps".
+  projectCategories: {
+    "AWS & Cloud": ["AWS-Serverless-Typescript", "aws-sdk-lambda-stack-node"],
+    "Java & Spring": ["mssc-brewery", "spring-security-jwt"],
+    "Real-time & Web3": ["react-chat-app", "webrtc-firebase-demo", "discord-blockchain"],
   },
   social: {
     linkedin: "bhopal-singh",
@@ -47,7 +59,7 @@ module.exports = {
     "JavaScript",
     "React.js",
     "JavaScript Functional Programming",
-    "JavaScript Preformance",
+    "JavaScript Performance",
     "Jquery",
     "MySQL",
     "Git",
@@ -67,8 +79,8 @@ module.exports = {
     {
       company: "360Insights",
       position: "Senior Full Stack Developer",
-      from: "September 2021",
-      to: " December 2019",
+      from: "December 2019",
+      to: " September 2021",
     },
     {
       company: "Emirates",

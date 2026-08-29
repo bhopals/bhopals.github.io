@@ -7,6 +7,7 @@ import Skill from "./components/Skill";
 import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Project from "./components/Project";
+import GithubStats from "./components/GithubStats";
 import Blog from "./components/Blog";
 import MetaTags from "./components/MetaTags";
 import { LoadingContext } from "./contexts/LoadingContext";
@@ -55,6 +56,7 @@ function App() {
               </div>
               <div className="lg:col-span-2 col-span-1">
                 <div className="grid grid-cols-1 gap-6">
+                  <GithubStats stats={githubData.stats} />
                   <Project repo={repo} />
                   <Blog />
                 </div>

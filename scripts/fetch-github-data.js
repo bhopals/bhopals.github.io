@@ -91,6 +91,7 @@ async function main() {
   const repos = (await Promise.all(names.map(fetchRepo))).filter(Boolean);
 
   let profile = null;
+  let stats = null;
   try {
     const u = await fetchJson(`https://api.github.com/users/${USERNAME}`);
     profile = {
@@ -100,8 +101,24 @@ async function main() {
       location: u.location || "",
       company: u.company || "",
     };
+
+    // Aggregate stars across every public repo (paginated listing)
+    let totalStars = 0;
+    for (let page = 1; page <= 5; page++) {
+      const list = await fetchJson(
+        `https://api.github.com/users/${USERNAME}/repos?per_page=100&page=${page}`
+      );
+      totalStars += list.reduce((sum, r) => sum + (r.stargazers_count || 0), 0);
+      if (list.length < 100) break;
+    }
+    stats = {
+      totalStars,
+      publicRepos: u.public_repos,
+      followers: u.followers,
+      since: new Date(u.created_at).getFullYear(),
+    };
   } catch (error) {
-    console.warn(`Profile fetch failed: ${error.message}`);
+    console.warn(`Profile/stats fetch failed: ${error.message}`);
   }
 
   if (!profile || repos.length === 0) {
@@ -115,7 +132,7 @@ async function main() {
   fs.mkdirSync(path.dirname(OUT_FILE), { recursive: true });
   fs.writeFileSync(
     OUT_FILE,
-    JSON.stringify({ generated_at: new Date().toISOString(), profile, repos }, null, 2)
+    JSON.stringify({ generated_at: new Date().toISOString(), profile, stats, repos }, null, 2)
   );
   console.log(`Wrote ${repos.length} repos (${pinned.length} pinned) to ${OUT_FILE}`);
 }

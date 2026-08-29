@@ -8,17 +8,25 @@ import { ThemeContext } from "../contexts/ThemeContext";
 const MetaTags = (props) => {
   const [theme] = useContext(ThemeContext);
 
+  const siteUrl =
+    config.social?.website || `https://${config.github.username}.github.io`;
+  const metaDescription = props.profile
+    ? [config.hero?.headline, config.hero?.tagline, props.profile.location]
+        .filter(Boolean)
+        .join(" · ") || props.profile.bio
+    : "";
+
   return (
     <Fragment>
-      {props.profile && config.googleAnalytics && (
+      {props.profile && (
         <Helmet>
-          {config.googleAnalytics.id && (
+          {config.googleAnalytics?.id && (
             <script
               async
               src={`https://www.googletagmanager.com/gtag/js?id=${config.googleAnalytics.id}`}
             ></script>
           )}
-          {config.googleAnalytics.id && (
+          {config.googleAnalytics?.id && (
             <script>
               {`
                                         window.dataLayer = window.dataLayer || [];
@@ -29,35 +37,28 @@ const MetaTags = (props) => {
                                         `}
             </script>
           )}
-          <title>Portfolio of {props.profile.name}</title>
+          <title>{`${props.profile.name} — ${config.hero?.headline || "Portfolio"}`}</title>
           <meta
             name="theme-color"
             content={isThemeDarkish(theme) ? "#000000" : "#ffffff"}
           />
 
-          <meta name="description" content={props.profile.bio} />
+          <meta name="description" content={metaDescription} />
 
           <meta
             itemprop="name"
             content={`Portfolio of ${props.profile.name}`}
           />
-          <meta itemprop="description" content={props.profile.bio} />
+          <meta itemprop="description" content={metaDescription} />
           <meta itemprop="image" content={props.profile.avatar} />
 
-          <meta
-            property="og:url"
-            content={
-              typeof config.social.website !== "undefined"
-                ? config.social.website
-                : ""
-            }
-          />
+          <meta property="og:url" content={siteUrl} />
           <meta property="og:type" content="website" />
           <meta
             property="og:title"
             content={`Portfolio of ${props.profile.name}`}
           />
-          <meta property="og:description" content={props.profile.bio} />
+          <meta property="og:description" content={metaDescription} />
           <meta property="og:image" content={props.profile.avatar} />
 
           <meta name="twitter:card" content="summary_large_image" />
@@ -65,7 +66,7 @@ const MetaTags = (props) => {
             name="twitter:title"
             content={`Portfolio of ${props.profile.name}`}
           />
-          <meta name="twitter:description" content={props.profile.bio} />
+          <meta name="twitter:description" content={metaDescription} />
           <meta name="twitter:image" content={props.profile.avatar} />
         </Helmet>
       )}
